@@ -27,8 +27,8 @@ const Admin = () => {
   const fetchData = async () => {
     try {
       const [prodRes, ordRes] = await Promise.all([
-        API.get('/api/products'),
-        API.get('/api/orders/all')
+        API.get('/products'),
+        API.get('/orders/all')
       ]);
       setProducts(prodRes.data);
       setOrders(ordRes.data);
@@ -47,11 +47,11 @@ const Admin = () => {
     e.preventDefault();
     try {
       if (editId) {
-        await API.put(`/api/products/${editId}`, prodForm);
+        await API.put(`/products/${editId}`, prodForm);
         toast.success('Product updated!');
         setEditId(null);
       } else {
-        await API.post('/api/products', prodForm);
+        await API.post('/products', prodForm);
         toast.success('Product added!');
       }
       
@@ -70,7 +70,7 @@ const Admin = () => {
       return toast.error('Please enter a valid positive number');
     }
     try {
-      await API.put(`/api/products/${p._id}`, { stock: p.stock + amount });
+      await API.put(`/products/${p._id}`, { stock: p.stock + amount });
       toast.success(`Successfully restocked ${p.name} by ${amount} units!`);
       fetchData();
     } catch (err) {
@@ -100,7 +100,7 @@ const Admin = () => {
 
   const processDeleteProduct = async (id) => {
     try {
-      await API.delete(`/api/products/${id}`);
+      await API.delete(`/products/${id}`);
       toast.info('Product deleted');
       fetchData();
     } catch (err) {
@@ -123,7 +123,7 @@ const Admin = () => {
 
   const handleUpdateOrderStatus = async (id, status) => {
     try {
-      await API.put(`/api/orders/${id}`, { status });
+      await API.put(`/orders/${id}`, { status });
       toast.success('Order status updated');
       fetchData();
     } catch (err) {
