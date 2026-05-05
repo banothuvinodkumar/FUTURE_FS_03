@@ -6,7 +6,8 @@ import mongoose from "mongoose";
 // ✅ Import routes
 import productRoutes from "./routes/productRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
-
+import orderRoutes from "./routes/orderRoutes.js";
+import cartRoutes from "./routes/cartRoutes.js";
 // ✅ Import model for seeding
 import Product from "./models/Product.js";
 
@@ -35,6 +36,8 @@ app.get("/", (req, res) => {
 // ✅ Routes
 app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/cart", cartRoutes);
 
 // ✅ AUTO SEED FUNCTION (runs only if DB empty)
 const seedProducts = async () => {
