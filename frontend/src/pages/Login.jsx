@@ -17,7 +17,7 @@ const Login = () => {
       setError('');
       
       // POST request to login API
-      const { data } = await API.post('/auth/login', { email, password });
+     const { data } = await API.post('/api/auth/login', { email, password });
       
       // Save JWT token and user info in localStorage
       localStorage.setItem('userInfo', JSON.stringify(data));
