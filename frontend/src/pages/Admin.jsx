@@ -28,7 +28,7 @@ const Admin = () => {
     try {
       const [prodRes, ordRes] = await Promise.all([
         API.get('/products'),
-        API.get('/orders')
+        API.get('/orders/all')
       ]);
       setProducts(prodRes.data);
       setOrders(ordRes.data);
