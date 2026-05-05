@@ -16,7 +16,7 @@ useEffect(() => {
       setLoading(true);
       setError('');
 
-      const { data } = await API.get('/products');
+      const { data } = await API.get('/api/products');
       setProducts(data);
 
     } catch (err) {
