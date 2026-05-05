@@ -284,3 +284,110 @@ th { background-color: #f9fafb; font-weight: 600; color: #4b5563; }
 .badge.pending { background-color: #fef3c7; color: #d97706; }
 .badge.shipped { background-color: #e0e7ff; color: #4338ca; }
 .badge.delivered { background-color: #d1fae5; color: #059669; }
+
+/* ============================= */
+/* MOBILE RESPONSIVE FIXES */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+  /* Page spacing */
+  .page-wrapper {
+    padding: 0.8rem;
+  }
+
+  /* Header (Admin top section) */
+  .page-wrapper > div {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.8rem !important;
+  }
+
+  /* Navbar */
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  /* Forms (Admin product form) */
+  .form-grid {
+    display: grid;
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Buttons */
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Tables → scroll instead of breaking */
+  .table-responsive {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 600px;
+  }
+
+  /* Admin tabs */
+  .admin-tabs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+@media (max-width: 600px) {
+  th:nth-child(3),
+  td:nth-child(3) {
+    display: none;
+  }
+}
+/* ============================= */
+/* ADMIN RESPONSIVE FIX */
+/* ============================= */
+
+@media (max-width: 768px) {
+
+  /* Header stack */
+  .admin-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem;
+  }
+
+  /* User card */
+  .admin-user-card {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Tabs */
+  .admin-tabs {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* Buttons stack */
+  .action-buttons {
+    flex-direction: column !important;
+    width: 100%;
+  }
+
+  /* Buttons full width */
+  .btn {
+    width: 100%;
+  }
+
+  /* Tables scroll */
+  .table-responsive {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 600px;
+  }
+}
