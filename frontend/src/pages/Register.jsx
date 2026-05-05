@@ -14,7 +14,7 @@ const Register = () => {
     e.preventDefault();
     try {
       setLoading(true);
-      await API.post('/auth/register', { name, email, password });
+      await API.post('/api/auth/register', { name, email, password });
       toast.success('Registration successful! Please sign in.');
       navigate('/login');
     } catch (error) {
