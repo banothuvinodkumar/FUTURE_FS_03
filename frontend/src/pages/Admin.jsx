@@ -133,9 +133,9 @@ const Admin = () => {
 
   return (
     <div className="page-wrapper">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
+      <div className="admin-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem', flexWrap: 'wrap', gap: '1rem' }}>
         <h2 className="page-title" style={{ marginBottom: 0 }}>Admin Dashboard</h2>
-        <div className="card" style={{ padding: '1rem', display: 'flex', gap: '1rem', alignItems: 'center', margin: 0, boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
+        <div  className="card admin-user-card" style={{ padding: '1rem', display: 'flex', gap: '1rem', alignItems: 'center', margin: 0, boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
           <div style={{ width: '45px', height: '45px', background: '#4f46e5', color: 'white', borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 'bold', fontSize: '1.4rem' }}>
             {user?.user?.name?.charAt(0).toUpperCase()}
           </div>
@@ -177,7 +177,7 @@ const Admin = () => {
                   <tr key={p._id}>
                     <td><img src={p.imageUrl} alt={p.name} width="50" style={{borderRadius:'4px'}} /></td>
                     <td>{p.name}</td><td>₹{p.price}</td><td>{p.stock}</td>
-                    <td style={{display: 'flex', gap: '0.5rem'}}>
+                    <td className="action-buttons" style={{display: 'flex', gap: '0.5rem'}}>
                       <button className="btn btn-success btn-sm" onClick={() => handleQuickRestock(p)}>Restock</button>
                       <button className="btn btn-primary btn-sm" onClick={() => handleEditProduct(p)}>Edit</button>
                       <button className="btn btn-danger btn-sm" onClick={() => handleDeleteProduct(p._id)}>Delete</button>
