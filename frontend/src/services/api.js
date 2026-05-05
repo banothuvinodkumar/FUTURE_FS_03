@@ -4,12 +4,14 @@ const API = axios.create({
   baseURL: import.meta.env.VITE_API_URL + "/api",
 });
 
-// ✅ Attach JWT token automatically
+// ✅ FIXED TOKEN HANDLING
 API.interceptors.request.use((req) => {
-  const token = localStorage.getItem("token");
-  if (token) {
-    req.headers.Authorization = `Bearer ${token}`;
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+
+  if (userInfo?.token) {
+    req.headers.Authorization = `Bearer ${userInfo.token}`;
   }
+
   return req;
 });
 
