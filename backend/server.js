@@ -1,32 +1,30 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
-const cors = require('cors');
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
 
-const authRoutes = require('./routes/authRoutes');
-const productRoutes = require('./routes/productRoutes');
-const cartRoutes = require('./routes/cartRoutes');
-const orderRoutes = require('./routes/orderRoutes');
+dotenv.config();
 
 const app = express();
 
-// Middleware
+// ✅ CORS (temporary open for deployment)
+app.use(cors());
+
+// OR stricter (after deployment)
+// app.use(cors({
+//   origin: ["http://localhost:5173", "https://your-frontend.vercel.app"],
+//   credentials: true
+// }));
+
 app.use(express.json());
-app.use(cors({
-  origin: 'http://localhost:5173', // Allow only your Vite frontend
-  credentials: true // Allow cookies/authorization headers
-}));
 
-// Routes
-app.use('/api/auth', authRoutes);
-app.use('/api/products', productRoutes);
-app.use('/api/cart', cartRoutes);
-app.use('/api/orders', orderRoutes);
+// ✅ Root route (important for Render health check)
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
 
-// Database Connection
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log('DB Connection Error:', err));
-
+// ✅ Use dynamic port
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
