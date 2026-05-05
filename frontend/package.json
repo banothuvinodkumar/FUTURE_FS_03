@@ -2,6 +2,7 @@
   "name": "ecommerce-client",
   "private": true,
   "version": "1.0.0",
+  "description": "E-commerce frontend (React + Vite)",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
