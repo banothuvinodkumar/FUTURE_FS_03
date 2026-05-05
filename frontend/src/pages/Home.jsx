@@ -10,22 +10,43 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
-  useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        setLoading(true);
-        const { data } = await API.get('/products');
-        setProducts(data);
-      } catch (err) {
-        console.error('Error fetching products:', err);
-        setError('Failed to load products. Please try again later.');
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchProducts();
-  }, []);
+useEffect(() => {
+  const fetchProducts = async () => {
+    try {
+      setLoading(true);
+      setError('');
 
+      const { data } = await API.get('/products');
+      setProducts(data);
+
+    } catch (err) {
+      console.log("First attempt failed, retrying in 3s...");
+
+      // 🔁 Retry after 3 seconds (Render wakes up)
+      setTimeout(async () => {
+        try {
+          const { data } = await API.get('/products');
+          setProducts(data);
+          setError('');
+        } catch (error) {
+          console.error('Retry failed:', error);
+          setError('Failed to load products. Please try again later.');
+        } finally {
+          setLoading(false);
+        }
+      }, 3000);
+
+      return;
+    }
+
+    setLoading(false);
+  };
+
+  // 🔥 Wake up backend instantly
+  fetch("https://ecommarce-b7lq.onrender.com");
+
+  fetchProducts();
+}, []);
   const addToCart = async (productId) => {
     try {
       await API.post('/cart', { productId, quantity: 1 });
