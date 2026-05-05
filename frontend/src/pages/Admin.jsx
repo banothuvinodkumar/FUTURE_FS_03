@@ -204,7 +204,7 @@ const Admin = () => {
                 {orders.map(o => (
                   <tr key={o._id}>
                     <td>{o._id.substring(o._id.length - 8)}</td>
-                    <td>{typeof o.user === "object" && o.user?.email ? o.user.email: o.user || 'N/A'}</td>
+                    <td>{o.user?.email ?? 'N/A'}</td>
                     <td>₹{o.totalAmount.toFixed(2)}</td>
                     <td><span className={`badge ${o.status.toLowerCase()}`}>{o.status}</span></td>
                     <td>
