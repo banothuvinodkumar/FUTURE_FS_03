@@ -1,6 +1,8 @@
-require('dotenv').config();
-const mongoose = require('mongoose');
-const Product = require('./models/Product');
+import mongoose from "mongoose";
+import dotenv from "dotenv";
+import Product from "./models/Product.js";
+
+dotenv.config();
 
 const sampleProducts = [
   // Electronics
@@ -414,15 +416,21 @@ const sampleProducts = [
   }
 ];
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(async () => {
-    console.log('MongoDB connected for seeding...');
-    await Product.deleteMany(); // Clears out existing products to prevent duplicates
+
+const seedDB = async () => {
+  try {
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("MongoDB connected for seeding...");
+
+    await Product.deleteMany();
     await Product.insertMany(sampleProducts);
-    console.log('✅ 50 Sample Products inserted successfully!');
+
+    console.log("✅ Products inserted successfully!");
     process.exit();
-  })
-  .catch(err => {
-    console.error('❌ Error Seeding Data:', err);
+  } catch (err) {
+    console.error("❌ Error Seeding Data:", err);
     process.exit(1);
-  });
+  }
+};
+
+seedDB();
