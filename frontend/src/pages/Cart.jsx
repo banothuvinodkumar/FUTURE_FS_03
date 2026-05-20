@@ -44,16 +44,22 @@ const Cart = () => {
     }
   };
 
-  const total = cartItems.reduce((acc, item) => acc + ((item.product?.price || 0) * item.quantity), 0);
+  const subtotal = cartItems.reduce((acc, item) => acc + ((item.product?.price || 0) * item.quantity), 0);
+  const tax = subtotal * 0.05; // 5% GST
+  const deliveryFee = subtotal > 0 ? 40 : 0; // Flat ₹40 delivery fee
+  const total = subtotal + tax + deliveryFee;
 
   return (
-    <div className="page-wrapper">
-      <h2 className="page-title">Your Cart</h2>
+    <div className="page-wrapper animate-slide-up">
+      <h2 className="page-title">Your Food Cart</h2>
       {cartItems.length === 0 ? <p>Cart is empty</p> : (
         <div className="cart-container">
           <div className="cart-list">
           {cartItems.map(item => (
             <div key={item._id} className="cart-item">
+              {item.product?.imageUrl && (
+                <img src={item.product.imageUrl} alt={item.product.name} className="cart-item-image" />
+              )}
               <div className="cart-item-info">
                 <h4>{item.product?.name || 'Product Unavailable'}</h4>
                 <div className="qty-controls">
@@ -64,16 +70,24 @@ const Cart = () => {
               </div>
               <div className="cart-item-action">
                 <span className="price">₹{((item.product?.price || 0) * item.quantity).toFixed(2)}</span>
-                <button onClick={() => removeFromCart(item._id)} className="btn btn-danger btn-sm">Remove</button>
+                <button onClick={() => removeFromCart(item._id)} className="btn btn-danger btn-sm" style={{borderRadius: '50%', padding: '0.4rem 0.6rem'}}>✕</button>
               </div>
           </div>
           ))}
           </div>
           <div className="cart-summary card">
-            <h3>Order Summary</h3>
-            <div className="summary-row"><span>Total Items:</span> <span>{cartItems.reduce((acc, item) => acc + item.quantity, 0)}</span></div>
+            <h3 style={{color: '#05386b', marginBottom: '1.5rem', fontWeight: '800'}}>Bill Details</h3>
+            
+            <div className="summary-row"><span>Item Total</span> <span>₹{subtotal.toFixed(2)}</span></div>
+            <div className="summary-row"><span>Taxes (5%)</span> <span>₹{tax.toFixed(2)}</span></div>
+            <div className="summary-row"><span>Delivery Fee</span> <span>₹{deliveryFee.toFixed(2)}</span></div>
+            
+            <div className="summary-divider"></div>
             <div className="summary-row total"><span>Total:</span> <span>₹{total.toFixed(2)}</span></div>
-            <button onClick={() => navigate('/checkout')} className="btn btn-success btn-block" style={{marginTop: '1.5rem'}}>Proceed to Checkout</button>
+            
+            <button onClick={() => navigate('/checkout')} className="btn btn-emerald-gradient btn-block" style={{marginTop: '1.5rem'}}>
+              Proceed to Checkout
+            </button>
           </div>
         </div>
       )}

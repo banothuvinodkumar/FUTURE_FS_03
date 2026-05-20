@@ -18,9 +18,11 @@ const Orders = () => {
       } catch (err) {
         console.error(err);
         if (err.response?.status === 401) {
+          toast.error('Session expired. Please log in again.');
           navigate('/login');
         } else {
           setError('Failed to load your orders. Please try again later.');
+          toast.error('Failed to load orders');
         }
       } finally {
         setLoading(false);
@@ -30,8 +32,9 @@ const Orders = () => {
   }, [navigate]);
 
   const getTrackingStep = (status) => {
-    if (status === 'Delivered') return 3;
-    if (status === 'Shipped') return 2;
+    if (status === 'Delivered') return 4;
+    if (status === 'Out for Delivery') return 3;
+    if (status === 'Preparing') return 2;
     return 1; // Pending
   };
 
@@ -73,22 +76,26 @@ const Orders = () => {
             <div key={order._id} className="card order-card">
               <div className="order-header">
                 <span className="order-id">Order ID: {order._id.substring(order._id.length - 8)}</span>
-                <span className={`badge ${order.status.toLowerCase()}`}>{order.status}</span>
+                <span className={`badge ${order.status.toLowerCase().replace(/\s+/g, '-')}`}>{order.status}</span>
               </div>
               
               <div className="tracking-wrapper">
                 <div className="tracking-background-line"></div>
-                <div className="tracking-progress-line" style={{ width: getTrackingStep(order.status) === 1 ? '0%' : getTrackingStep(order.status) === 2 ? '50%' : '100%' }}></div>
+                <div className="tracking-progress-line" style={{ width: getTrackingStep(order.status) === 1 ? '0%' : getTrackingStep(order.status) === 2 ? '33.33%' : getTrackingStep(order.status) === 3 ? '66.66%' : '100%' }}></div>
                 <div className="tracking-step">
                   <div className={`step-circle ${getTrackingStep(order.status) >= 1 ? 'active' : ''}`}>1</div>
                   <span className="step-label">Pending</span>
                 </div>
                 <div className="tracking-step">
                   <div className={`step-circle ${getTrackingStep(order.status) >= 2 ? 'active' : ''}`}>2</div>
-                  <span className="step-label">Shipped</span>
+                  <span className="step-label">Preparing</span>
                 </div>
                 <div className="tracking-step">
-                  <div className={`step-circle ${getTrackingStep(order.status) === 3 ? 'active' : ''}`}>3</div>
+                  <div className={`step-circle ${getTrackingStep(order.status) >= 3 ? 'active' : ''}`}>3</div>
+                  <span className="step-label">Out for Delivery</span>
+                </div>
+                <div className="tracking-step">
+                  <div className={`step-circle ${getTrackingStep(order.status) === 4 ? 'active' : ''}`}>4</div>
                   <span className="step-label">Delivered</span>
                 </div>
               </div>

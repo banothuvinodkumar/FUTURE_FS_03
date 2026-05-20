@@ -19,8 +19,7 @@ const app = express();
 app.use(
   cors({
     origin: [
-      "http://localhost:5173",
-      "https://ecommarce-bzyg.vercel.app"
+      "http://localhost:5173"
     ],
     credentials: true
   })
@@ -44,422 +43,512 @@ const seedProducts = async () => {
   const count = await Product.countDocuments();
 
   if (count === 0) {
-    console.log("🌱 Seeding initial products...");
+    console.log("🌱 Seeding initial food menu...");
 
     await Product.insertMany([
-     {
-    name: "Smartphone Pro Max 5G",
-    price: 65999,
-    description: "Latest 5G smartphone with 120Hz AMOLED display, 108MP camera, and all-day battery.",
-    category: "Electronics",
-    imageUrl: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500",
-    stock: 45
-  },
-  {
-    name: "Ultra-Thin Gaming Laptop",
-    price: 125000,
-    description: "High-performance laptop featuring RTX 4060, 16GB RAM, and 1TB NVMe SSD.",
-    category: "Electronics",
-    imageUrl: "https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=500",
-    stock: 20
-  },
-  {
-    name: "Wireless Noise-Cancelling Earbuds",
-    price: 4999,
-    description: "True wireless earbuds with active noise cancellation and 24-hour playback.",
-    category: "Electronics",
-    imageUrl: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?w=500",
-    stock: 150
-  },
-  {
-    name: "4K Ultra HD Smart TV",
-    price: 42000,
-    description: "55-inch 4K Smart LED TV with built-in streaming apps and Dolby Vision.",
-    category: "Electronics",
-    imageUrl: "https://images.unsplash.com/photo-1593784991095-a205069470b6?w=500",
-    stock: 12
-  },
-  {
-    name: "Mechanical Gaming Keyboard",
-    price: 3500,
-    description: "RGB backlit mechanical keyboard with blue switches for tactile feedback.",
-    category: "Electronics",
-    imageUrl: "https://images.unsplash.com/photo-1595225476474-87563907a212?w=500",
-    stock: 85
-  },
-  {
-    name: "Wireless Gaming Mouse",
-    price: 2100,
-    description: "Ergonomic gaming mouse with 10000 DPI optical sensor and 6 programmable buttons.",
-    category: "Electronics",
-    imageUrl: "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500",
-    stock: 120
-  },
-  {
-    name: "20000mAh Power Bank",
-    price: 1800,
-    description: "Fast-charging portable power bank with dual USB outputs.",
-    category: "Electronics",
-    imageUrl: "https://images.unsplash.com/photo-1609091839311-d5365f9ff1c5?w=500",
-    stock: 200
-  },
-  {
-    name: "Smart Fitness Band",
-    price: 2999,
-    description: "Heart rate and SpO2 monitor with 14-day battery life and AMOLED display.",
-    category: "Electronics",
-    imageUrl: "https://images.unsplash.com/photo-1557438159-51eec7a6c9e8?w=500",
-    stock: 90
-  },
-  {
-    name: "Bluetooth Portable Speaker",
-    price: 2500,
-    description: "IPX7 waterproof portable speaker with extra bass and 12-hour playtime.",
-    category: "Electronics",
-    imageUrl: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=500",
-    stock: 60
-  },
-  {
-    name: "1TB External Hard Drive",
-    price: 4500,
-    description: "USB 3.0 external hard drive for fast data transfer and secure backups.",
-    category: "Electronics",
-    imageUrl: "https://images.unsplash.com/photo-1531492746076-161ca9bcad58?w=500",
-    stock: 40
-  },
-  
-  // Clothing
-  {
-    name: "Men's Cotton Polo T-Shirt",
-    price: 799,
-    description: "Comfortable and breathable regular fit polo t-shirt.",
-    category: "Clothing",
-    imageUrl: "https://images.unsplash.com/photo-1581655353564-df123a1eb820?w=500",
-    stock: 300
-  },
-  {
-    name: "Slim Fit Blue Jeans",
-    price: 1499,
-    description: "Stretchable slim fit denim jeans for everyday wear.",
-    category: "Clothing",
-    imageUrl: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500",
-    stock: 150
-  },
-  {
-    name: "Women's Floral Maxi Dress",
-    price: 1299,
-    description: "Beautiful floral print maxi dress perfect for summer outings.",
-    category: "Clothing",
-    imageUrl: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=500",
-    stock: 80
-  },
-  {
-    name: "Classic Leather Jacket",
-    price: 3499,
-    description: "Premium faux leather jacket with a modern biker style.",
-    category: "Clothing",
-    imageUrl: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500",
-    stock: 35
-  },
-  {
-    name: "Traditional Silk Saree",
-    price: 4500,
-    description: "Authentic banarasi silk saree with intricate zari work.",
-    category: "Clothing",
-    imageUrl: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500",
-    stock: 25
-  },
-  {
-    name: "Men's Formal Shirt",
-    price: 999,
-    description: "Solid cotton formal shirt for office and business wear.",
-    category: "Clothing",
-    imageUrl: "https://images.unsplash.com/photo-1598033129183-c4f50c736f10?w=500",
-    stock: 120
-  },
-  {
-    name: "Winter Hoodie Sweatshirt",
-    price: 1199,
-    description: "Warm fleece-lined hoodie with front kangaroo pockets.",
-    category: "Clothing",
-    imageUrl: "https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=500",
-    stock: 200
-  },
-  {
-    name: "Women's Kurta Set",
-    price: 1599,
-    description: "Embroidered straight kurta with matching palazzo pants.",
-    category: "Clothing",
-    imageUrl: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=500",
-    stock: 60
-  },
-  {
-    name: "Running Sports Shoes",
-    price: 2499,
-    description: "Lightweight sports shoes with memory foam insoles.",
-    category: "Clothing",
-    imageUrl: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500",
-    stock: 90
-  },
-  {
-    name: "Unisex Cotton Socks (Pack of 3)",
-    price: 399,
-    description: "Breathable ankle-length cotton socks.",
-    category: "Clothing",
-    imageUrl: "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?w=500",
-    stock: 120
-  },
-
-  // Home & Kitchen
-  {
-    name: "Non-Stick Cookware Set",
-    price: 2200,
-    description: "3-piece non-stick cookware set including fry pan, kadai, and tawa.",
-    category: "Home & Kitchen",
-    imageUrl: "https://images.unsplash.com/photo-1556910110-a5a63dfd393c?w=500",
-    stock: 45
-  },
-  {
-    name: "Stainless Steel Water Bottle",
-    price: 650,
-    description: "1-liter vacuum insulated stainless steel water flask.",
-    category: "Home & Kitchen",
-    imageUrl: "https://images.unsplash.com/photo-1602143407151-7111542de6e8?w=500",
-    stock: 300
-  },
-  {
-    name: "Mixer Grinder 750W",
-    price: 3500,
-    description: "Heavy-duty 750W mixer grinder with 3 stainless steel jars.",
-    category: "Home & Kitchen",
-    imageUrl: "https://images.unsplash.com/photo-1570222094114-d054a817e56b?w=500",
-    stock: 25
-  },
-  {
-    name: "Cotton Double Bedsheet",
-    price: 1200,
-    description: "100% cotton double bedsheet with 2 pillow covers.",
-    category: "Home & Kitchen",
-    imageUrl: "https://images.unsplash.com/photo-1536882240095-0379873feb4e?w=500",
-    stock: 80
-  },
-  {
-    name: "Electric Water Kettle",
-    price: 999,
-    description: "1.5L electric kettle with auto shut-off feature.",
-    category: "Home & Kitchen",
-    imageUrl: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=500",
-    stock: 110
-  },
-  {
-    name: "Coffee Mug Set (6 Pieces)",
-    price: 499,
-    description: "Elegant ceramic coffee mugs for your daily brew.",
-    category: "Home & Kitchen",
-    imageUrl: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=500",
-    stock: 60
-  },
-  {
-    name: "Air Purifier",
-    price: 9500,
-    description: "HEPA air purifier for removing 99.9% of allergens and dust.",
-    category: "Home & Kitchen",
-    imageUrl: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=500",
-    stock: 15
-  },
-  {
-    name: "Microwave Oven 20L",
-    price: 6500,
-    description: "20-liter solo microwave oven with easy dial controls.",
-    category: "Home & Kitchen",
-    imageUrl: "https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?w=500",
-    stock: 10
-  },
-  {
-    name: "Orthopedic Memory Foam Pillow",
-    price: 899,
-    description: "Contoured memory foam pillow for neck and back pain relief.",
-    category: "Home & Kitchen",
-    imageUrl: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=500",
-    stock: 75
-  },
-  {
-    name: "Wooden Wall Shelf",
-    price: 1500,
-    description: "Modern floating wooden wall shelf for living room decor.",
-    category: "Home & Kitchen",
-    imageUrl: "https://images.unsplash.com/photo-1532372320572-cda25653a26d?w=500",
-    stock: 40
-  },
-
-  // Accessories & Beauty
-  {
-    name: "Aviator Sunglasses",
-    price: 1299,
-    description: "UV400 polarized aviator sunglasses for men and women.",
-    category: "Accessories",
-    imageUrl: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=500",
-    stock: 120
-  },
-  {
-    name: "Genuine Leather Wallet",
-    price: 899,
-    description: "Classic brown leather bifold wallet with RFID blocking.",
-    category: "Accessories",
-    imageUrl: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=500",
-    stock: 150
-  },
-  {
-    name: "Laptop Backpack",
-    price: 1899,
-    description: "Water-resistant travel backpack fitting up to 15.6-inch laptops.",
-    category: "Accessories",
-    imageUrl: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500",
-    stock: 95
-  },
-  {
-    name: "Analog Wrist Watch",
-    price: 2199,
-    description: "Premium analog watch with stainless steel strap.",
-    category: "Accessories",
-    imageUrl: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500",
-    stock: 65
-  },
-  {
-    name: "Women's Tote Bag",
-    price: 1599,
-    description: "Spacious PU leather tote bag for everyday use.",
-    category: "Accessories",
-    imageUrl: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?w=500",
-    stock: 50
-  },
-  {
-    name: "Luxury Perfume 100ml",
-    price: 2500,
-    description: "Long-lasting Eau De Parfum with woody and citrus notes.",
-    category: "Beauty",
-    imageUrl: "https://images.unsplash.com/photo-1523293182086-7651a899d37f?w=500",
-    stock: 40
-  },
-  {
-    name: "Matte Liquid Lipstick",
-    price: 499,
-    description: "Smudge-proof matte liquid lipstick lasting up to 12 hours.",
-    category: "Beauty",
-    imageUrl: "https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500",
-    stock: 200
-  },
-  {
-    name: "Vitamin C Face Wash",
-    price: 349,
-    description: "Gentle foaming face wash for glowing and clear skin.",
-    category: "Beauty",
-    imageUrl: "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=500",
-    stock: 180
-  },
-  {
-    name: "Hydrating Body Lotion",
-    price: 450,
-    description: "Deep moisture body lotion enriched with cocoa butter.",
-    category: "Beauty",
-    imageUrl: "https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?w=500",
-    stock: 110
-  },
-  {
-    name: "Hair Smoothing Serum",
-    price: 550,
-    description: "Frizz-control hair serum with argan oil extracts.",
-    category: "Beauty",
-    imageUrl: "https://images.unsplash.com/photo-1535585209827-a15fcdbc4c2d?w=500",
-    stock: 90
-  },
-
-  // Sports, Books & Hobbies
-  {
-    name: "Anti-Slip Yoga Mat",
-    price: 799,
-    description: "6mm thick TPE yoga mat with alignment lines.",
-    category: "Sports",
-    imageUrl: "https://images.unsplash.com/photo-1601925260368-ae2f83cf8b7f?w=500",
-    stock: 75
-  },
-  {
-    name: "Adjustable Dumbbells Set",
-    price: 3500,
-    description: "20kg adjustable PVC dumbbell set for home workouts.",
-    category: "Sports",
-    imageUrl: "https://images.unsplash.com/photo-1584735935682-2f2b69dff9d2?w=500",
-    stock: 30
-  },
-  {
-    name: "Cricket Bat (Kashmir Willow)",
-    price: 1800,
-    description: "Full-size Kashmir willow cricket bat with a comfortable grip.",
-    category: "Sports",
-    imageUrl: "https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=500",
-    stock: 40
-  },
-  {
-    name: "Sci-Fi Bestseller Book",
-    price: 399,
-    description: "Award-winning science fiction novel paperback edition.",
-    category: "Books",
-    imageUrl: "https://images.unsplash.com/photo-1614113489855-66422ad300a4?w=500",
-    stock: 150
-  },
-  {
-    name: "Self-Help Motivation Book",
-    price: 299,
-    description: "#1 New York Times bestseller for personal growth.",
-    category: "Books",
-    imageUrl: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=500",
-    stock: 200
-  },
-  {
-    name: "Professional Sketchbook",
-    price: 250,
-    description: "A4 size, 140gsm thick paper sketchbook for artists.",
-    category: "Hobbies",
-    imageUrl: "https://images.unsplash.com/photo-1544816155-12df9643f363?w=500",
-    stock: 85
-  },
-  {
-    name: "Watercolor Paint Set",
-    price: 650,
-    description: "24 vibrant watercolor tubes with 2 blending brushes.",
-    category: "Hobbies",
-    imageUrl: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=500",
-    stock: 60
-  },
-  {
-    name: "Acoustic Guitar",
-    price: 4500,
-    description: "38-inch acoustic guitar with spruce top and rich tone.",
-    category: "Hobbies",
-    imageUrl: "https://images.unsplash.com/photo-1510915361894-db8b60106cb1?w=500",
-    stock: 15
-  },
-  {
-    name: "Classic Board Game",
-    price: 899,
-    description: "Family strategy board game for 2-6 players.",
-    category: "Hobbies",
-   imageUrl: "https://images.unsplash.com/photo-1611996575749-79a3a250f948?w=500",
-    stock: 45
-  },
-  {
-    name: "1000 Piece Jigsaw Puzzle",
-    price: 599,
-    description: "High-quality landscape jigsaw puzzle for adults.",
-    category: "Hobbies",
-    imageUrl: "https://images.unsplash.com/photo-1578377375762-cbcc98d68af0?w=500",
-    stock: 55
-  }
+      // --- veg ---
+      {
+        name: "Paneer Butter Masala",
+        price: 250,
+        description: "Rich and creamy curry made with paneer, spices, onions, tomatoes, cashews, and butter.",
+        category: "veg",
+        imageUrl: "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=500",
+        stock: 50,
+        rating: 4.8
+      },
+      {
+        name: "Dal Makhani",
+        price: 220,
+        description: "Classic North Indian dish made with whole black lentils, butter, and cream simmered to perfection.",
+        category: "veg",
+        imageUrl: "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=500",
+        stock: 40,
+        rating: 4.7
+      },
+      {
+        name: "Kadai Paneer",
+        price: 240,
+        description: "Spicy, warming, flavorful, and super delicious dish made by cooking paneer and bell peppers.",
+        category: "veg",
+        imageUrl: "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?w=500",
+        stock: 35,
+        rating: 4.6
+      },
+      {
+        name: "Mix Veg Curry",
+        price: 210,
+        description: "A mixture of vegetables like potatoes, carrots, peas, and beans cooked in an onion-tomato gravy.",
+        category: "veg",
+        imageUrl: "https://images.unsplash.com/photo-1604908177453-7462950a6a3b?w=500",
+        stock: 30,
+        rating: 4.4
+      },
+      {
+        name: "Malai Kofta",
+        price: 260,
+        description: "Fried dumpling balls made of mashed potatoes and paneer, served with a creamy cashew gravy.",
+        category: "veg",
+        imageUrl: "https://images.unsplash.com/photo-1606491956689-2ea866880c84?w=500",
+        stock: 25,
+        rating: 4.9
+      },
+      // --- Non-Veg ---
+      {
+        name: "Butter Chicken",
+        price: 320,
+        description: "Tender chicken cooked in a mildly spiced tomato and butter sauce. A worldwide favorite.",
+        category: "Non-Veg",
+        imageUrl: "https://images.unsplash.com/photo-1565557623262-b51c2513a641?w=500",
+        stock: 45,
+        rating: 4.9
+      },
+      {
+        name: "Chicken Tikka Masala",
+        price: 310,
+        description: "Roasted marinated chicken chunks in a spiced curry sauce.",
+        category: "Non-Veg",
+        imageUrl: "https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?w=500",
+        stock: 50,
+        rating: 4.8
+      },
+      {
+        name: "Mutton Rogan Josh",
+        price: 420,
+        description: "A robust, spicy, and fragrant lamb curry originating from Kashmir.",
+        category: "Non-Veg",
+        imageUrl: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=500",
+        stock: 20,
+        rating: 4.7
+      },
+      {
+        name: "Kadai Chicken",
+        price: 290,
+        description: "Chicken cooked with tomatoes, onions, and bell peppers in a traditional Indian wok.",
+        category: "Non-Veg",
+        imageUrl: "https://images.unsplash.com/photo-1604908176997-125f25cc6f3d?w=500",
+        stock: 35,
+        rating: 4.5
+      },
+      {
+        name: "Andhra Chicken Curry",
+        price: 280,
+        description: "Spicy, aromatic, and fiery chicken curry made in traditional Andhra style.",
+        category: "Non-Veg",
+        imageUrl: "https://spoonsofflavor.com/wp-content/uploads/2021/04/Andhra-Chicken-Curry.jpg",
+        stock: 30,
+        rating: 4.6
+      },
+      // --- Biryani ---
+      {
+        name: "Hyderabadi Chicken Dum Biryani",
+        price: 350,
+        description: "Classic Hyderabadi style slow-cooked chicken layered with aromatic basmati rice.",
+        category: "Biryani",
+        imageUrl: "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=500",
+        stock: 60,
+        rating: 4.9
+      },
+      {
+        name: "Mutton Dum Biryani",
+        price: 450,
+        description: "Succulent pieces of mutton marinated in spices and cooked with fragrant rice.",
+        category: "Biryani",
+        imageUrl: "https://sinfullyspicy.com/wp-content/uploads/2023/12/1200-by-1200-images-2.jpg",
+        stock: 40,
+        rating: 4.8
+      },
+      {
+        name: "Paneer Tikka Biryani",
+        price: 290,
+        description: "Vegetarian delight featuring marinated paneer tikka layered with spiced rice.",
+        category: "Biryani",
+        imageUrl: "https://orders.popskitchen.in/storage/2024/09/image-285.png",
+        stock: 30,
+        rating: 4.6
+      },
+      {
+        name: "Egg Dum Biryani",
+        price: 250,
+        description: "Flavorful basmati rice cooked with boiled eggs and aromatic spices.",
+        category: "Biryani",
+        imageUrl: "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=500",
+        stock: 25,
+        rating: 4.5
+      },
+      {
+        name: "Special Prawns Biryani",
+        price: 499,
+        description: "Fresh prawns marinated in coastal spices, slow-cooked with basmati rice.",
+        category: "Biryani",
+        imageUrl: "https://images.slurrp.com/prod/recipe_images/transcribe/main%20course/Prawn-Biryani.webp",
+        stock: 15,
+        rating: 4.7
+      },
+      // --- Seafood ---
+      {
+        name: "Goan Fish Curry",
+        price: 380,
+        description: "Tangy and spicy fish curry made with coconut milk and Goan spices.",
+        category: "Seafood",
+        imageUrl: "https://static.wixstatic.com/media/798804_a6039d082e724801a10a74fe1bdebefc~mv2.jpg/v1/fill/w_568,h_426,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/798804_a6039d082e724801a10a74fe1bdebefc~mv2.jpg",
+        stock: 20,
+        rating: 4.8
+      },
+      {
+        name: "Prawns Rava Fry",
+        price: 420,
+        description: "Crispy fried prawns coated in semolina and regional spices.",
+        category: "Seafood",
+        imageUrl: "https://images.unsplash.com/photo-1559742811-822873691df8?w=500",
+        stock: 25,
+        rating: 4.7
+      },
+      {
+        name: "Garlic Butter Prawns",
+        price: 450,
+        description: "Juicy prawns tossed in rich garlic butter and fresh herbs.",
+        category: "Seafood",
+        imageUrl: "https://headbangerskitchen.com/wp-content/uploads/2023/01/BGPRAWNS-Vertical.jpg",
+        stock: 30,
+        rating: 4.9
+      },
+      {
+        name: "Apollo Fish",
+        price: 360,
+        description: "Boneless fish fillets fried and tossed in a spicy, punchy yogurt-based sauce.",
+        category: "Seafood",
+        imageUrl: "https://www.indianhealthyrecipes.com/wp-content/uploads/2022/12/apollo-fish-recipe.jpg",
+        stock: 20,
+        rating: 4.6
+      },
+      // --- Fast Food ---
+      {
+        name: "Margherita Pizza",
+        price: 299,
+        description: "Classic delight with 100% real mozzarella cheese and fresh basil.",
+        category: "Fast Food",
+        imageUrl: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500",
+        stock: 50,
+        rating: 4.7
+      },
+      {
+        name: "Paneer Tikka Burger",
+        price: 179,
+        description: "Spicy paneer tikka patty layered with fresh veggies and mint mayo.",
+        category: "Fast Food",
+        imageUrl: "https://jeyporedukaan.in/wp-content/uploads/2022/09/images-21.jpeg",
+        stock: 45,
+        rating: 4.5
+      },
+      {
+        name: "Classic Chicken Burger",
+        price: 199,
+        description: "Juicy grilled chicken patty with fresh lettuce, tomatoes, and garlic mayo.",
+        category: "Fast Food",
+        imageUrl: "https://images.unsplash.com/photo-1550547660-d9450f859349?w=500",
+        stock: 60,
+        rating: 4.6
+      },
+      {
+        name: "Peri Peri French Fries",
+        price: 149,
+        description: "Crispy golden fries tossed in a fiery peri peri seasoning.",
+        category: "Fast Food",
+        imageUrl: "https://images.unsplash.com/photo-1576107232684-1279f390859f?w=500",
+        stock: 100,
+        rating: 4.8
+      },
+      {
+        name: "Chicken Roll",
+        price: 160,
+        description: "Flaky paratha wrapped around spicy chicken tikka pieces and onions.",
+        category: "Fast Food",
+        imageUrl: "https://www.indianhealthyrecipes.com/wp-content/uploads/2024/02/chicken-kathi-roll-chicken-frankie.jpg",
+        stock: 40,
+        rating: 4.4
+      },
+      // --- Tiffins ---
+      {
+        name: "Idli Sambar",
+        price: 80,
+        description: "Soft steamed rice cakes served with flavorful lentil soup and coconut chutney.",
+        category: "Tiffins",
+        imageUrl: "https://vaya.in/recipes/wp-content/uploads/2018/02/Idli-and-Sambar-1.jpg",
+        stock: 80,
+        rating: 4.7
+      },
+      {
+        name: "Medu Vada",
+        price: 70,
+        description: "Crispy, deep-fried lentil donuts served with hot sambar and chutney.",
+        category: "Tiffins",
+        imageUrl: "https://c.ndtvimg.com/2023-09/u113o4r_medu-vada_625x300_06_September_23.jpg",
+        stock: 60,
+        rating: 4.6
+      },
+      {
+        name: "Upma",
+        price: 65,
+        description: "Savory semolina porridge cooked with vegetables and tempered with mustard seeds.",
+        category: "Tiffins",
+        imageUrl: "https://www.maggi.in/sites/default/files/srh_recipes/5f1439c480c484bacc2fcc13ac018173.jpg",
+        stock: 50,
+        rating: 4.3
+      },
+      {
+        name: "Ghee Pongal",
+        price: 90,
+        description: "Comforting dish made with rice, yellow moong dal, black pepper, and generous amounts of ghee.",
+        category: "Tiffins",
+        imageUrl: "https://www.vegrecipesofindia.com/wp-content/uploads/2016/04/pongal-recipe-1.jpg",
+        stock: 45,
+        rating: 4.8
+      },
+      // --- South Indian ---
+      {
+        name: "Masala Dosa",
+        price: 120,
+        description: "Crispy crepe made from rice and lentils, filled with spiced potato curry.",
+        category: "South Indian",
+        imageUrl: "https://myfoodstory.com/wp-content/uploads/2025/08/Mysore-Masala-Dosa-Recipe-3.jpg",
+        stock: 100,
+        rating: 4.9
+      },
+      {
+        name: "Mysore Masala Dosa",
+        price: 140,
+        description: "Crispy dosa smeared with a spicy red garlic chutney and stuffed with potato masala.",
+        category: "South Indian",
+        imageUrl: "https://palatesdesire.com/wp-content/uploads/2022/09/Mysore-masala-dosa-recipe@palates-desire.jpg",
+        stock: 50,
+        rating: 4.8
+      },
+      {
+        name: "Onion Uttapam",
+        price: 110,
+        description: "Thick, soft savory pancake topped with finely chopped onions and green chilies.",
+        category: "South Indian",
+        imageUrl: "https://images.slurrp.com/prod/recipe_images/transcribe/breakfast/Bajra-onion-uttapam.webp",
+        stock: 40,
+        rating: 4.5
+      },
+      {
+        name: "Rava Dosa",
+        price: 130,
+        description: "Thin, crispy dosa made with semolina, rice flour, and seasoned with cumin and ginger.",
+        category: "South Indian",
+        imageUrl: "https://www.vegrecipesofindia.com/wp-content/uploads/2018/09/rava-dosa-recipe-1.jpg",
+        stock: 35,
+        rating: 4.6
+      },
+      {
+        name: "Bisi Bele Bath",
+        price: 150,
+        description: "Traditional Karnataka dish prepared with rice, lentils, vegetables, and aromatic spices.",
+        category: "South Indian",
+        imageUrl: "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=500",
+        stock: 30,
+        rating: 4.7
+      },
+      // --- Chinese ---
+      {
+        name: "Veg Hakka Noodles",
+        price: 180,
+        description: "Wok-tossed noodles with crunchy vegetables and a splash of soy sauce.",
+        category: "Chinese",
+        imageUrl: "https://images.unsplash.com/photo-1645696301019-35adcc18fc21?w=500",
+        stock: 60,
+        rating: 4.6
+      },
+      {
+        name: "Chicken Fried Rice",
+        price: 220,
+        description: "Classic wok-fried rice tossed with tender chicken pieces, egg, and spring onions.",
+        category: "Chinese",
+        imageUrl: "https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=500",
+        stock: 55,
+        rating: 4.7
+      },
+      {
+        name: "Veg Manchurian (Gravy)",
+        price: 200,
+        description: "Deep-fried mixed vegetable dumplings tossed in a spicy soy and garlic gravy.",
+        category: "Chinese",
+        imageUrl: "https://www.indianhealthyrecipes.com/wp-content/uploads/2021/07/veg-manchurian.jpg",
+        stock: 45,
+        rating: 4.8
+      },
+      {
+        name: "Chilli Chicken (Dry)",
+        price: 260,
+        description: "Spicy and tangy Indo-Chinese style dry chili chicken, perfect as a starter.",
+        category: "Chinese",
+        imageUrl: "https://www.chilitochoc.com/wp-content/uploads/2026/01/chicken-chili-dry-featured.jpg",
+        stock: 45,
+        rating: 4.9
+      },
+      {
+        name: "Schezwan Noodles",
+        price: 190,
+        description: "Fiery, spicy, and garlicky noodles tossed in homemade Schezwan sauce.",
+        category: "Chinese",
+        imageUrl: "https://images.unsplash.com/photo-1585032226651-759b368d7246?w=500",
+        stock: 40,
+        rating: 4.5
+      },
+      // --- Starters & Snacks ---
+      {
+        name: "Chicken 65",
+        price: 240,
+        description: "Spicy, deep-fried chicken bites tossed with curry leaves and red chilies.",
+        category: "Starters & Snacks",
+        imageUrl: "https://recipe52.com/wp-content/uploads/2022/02/chicken-65-fb-1-of-1-1.jpg",
+        stock: 50,
+        rating: 4.8
+      },
+      {
+        name: "Paneer 65",
+        price: 220,
+        description: "Crispy fried cottage cheese cubes tossed in a spicy, tangy yogurt sauce.",
+        category: "Starters & Snacks",
+        imageUrl: "https://static.toiimg.com/thumb/75490988.cms?imgsize=1561658&width=800&height=800",
+        stock: 45,
+        rating: 4.6
+      },
+      {
+        name: "Veg Spring Rolls",
+        price: 180,
+        description: "Crispy, golden-fried wrappers filled with a savory mix of stir-fried vegetables.",
+        category: "Starters & Snacks",
+        imageUrl: "https://www.cubesnjuliennes.com/wp-content/uploads/2021/01/Spring-Roll-Recipe.jpg",
+        stock: 35,
+        rating: 4.7
+      },
+      {
+        name: "Steamed Veg Momos",
+        price: 150,
+        description: "Delicious steamed dumplings stuffed with finely minced vegetables and herbs.",
+        category: "Starters & Snacks",
+        imageUrl: "https://www.mygingergarlickitchen.com/wp-content/uploads/2024/02/veg-momos-recipe-5.jpg",
+        stock: 40,
+        rating: 4.8
+      },
+      {
+        name: "Crispy Chilli Corn",
+        price: 170,
+        description: "Batter-fried sweet corn kernels tossed with onions, peppers, and Chinese sauces.",
+        category: "Starters & Snacks",
+        imageUrl: "https://i.ytimg.com/vi/HdNzWbLQ7B8/maxresdefault.jpg",
+        stock: 30,
+        rating: 4.5
+      },
+      // --- Desserts ---
+      {
+        name: "Chocolate Lava Cake",
+        price: 160,
+        description: "Warm, fudgy chocolate cake with a molten, gooey chocolate center.",
+        category: "Desserts",
+        imageUrl: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=500",
+        stock: 30,
+        rating: 4.9
+      },
+      {
+        name: "Gulab Jamun",
+        price: 110,
+        description: "Soft, deep-fried milk solid balls soaked in a fragrant rose and cardamom syrup.",
+        category: "Desserts",
+        imageUrl: "https://www.indianhealthyrecipes.com/wp-content/uploads/2021/11/gulab-jamun.jpg",
+        stock: 40,
+        rating: 4.8
+      },
+      {
+        name: "Rasmalai",
+        price: 140,
+        description: "Soft cottage cheese dumplings soaked in sweetened, saffron-infused thickened milk.",
+        category: "Desserts",
+        imageUrl: "https://www.cookwithmanali.com/wp-content/uploads/2014/07/Rasmalai-Recipe-500x500.jpg",
+        stock: 25,
+        rating: 4.9
+      },
+      {
+        name: "Mango Cheesecake",
+        price: 220,
+        description: "Creamy, rich baked cheesecake layered with fresh seasonal mango puree.",
+        category: "Desserts",
+        imageUrl: "https://takestwoeggs.com/wp-content/uploads/2021/08/No-Bake-Mango-Cheesecake-Takestwoeggs-Final-sq.jpg",
+        stock: 15,
+        rating: 4.6
+      },
+      // --- Drinks ---
+      {
+        name: "Virgin Mojito",
+        price: 120,
+        description: "Refreshing mocktail made with fresh mint leaves, lemon juice, and sparkling water.",
+        category: "Drinks",
+        imageUrl: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500",
+        stock: 50,
+        rating: 4.7
+      },
+      {
+        name: "Cold Coffee",
+        price: 140,
+        description: "Classic chilled blend of rich espresso, milk, and vanilla ice cream.",
+        category: "Drinks",
+        imageUrl: "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?w=500",
+        stock: 60,
+        rating: 4.8
+      },
+      {
+        name: "Mango Lassi",
+        price: 130,
+        description: "Sweet, creamy traditional yogurt drink blended with ripe mangoes.",
+        category: "Drinks",
+        imageUrl: "https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_auto,w_1500,ar_3:2/k%2FPhoto%2FRecipes%2F2024-08-mango-lassi%2Fmango-lassi-013",
+        stock: 45,
+        rating: 4.9
+      },
+      {
+        name: "Fresh Lime Soda",
+        price: 80,
+        description: "Revitalizing sweet and salty fizzy drink flavored with freshly squeezed lime juice.",
+        category: "Drinks",
+        imageUrl: "https://www.acouplecooks.com/wp-content/uploads/2021/12/Lemon-Soda-004.jpg",
+        stock: 80,
+        rating: 4.5
+      },
+      // --- Combo & Offers ---
+      {
+        name: "Chicken Biryani Combo",
+        price: 499,
+        description: "Includes Hyderabadi Chicken Biryani, Chicken 65, Raita, Salan, and a soft drink.",
+        category: "Combo & Offers",
+        imageUrl: "https://party.manis.in/cdn/shop/files/ChickenBiryaniBucketCombos_ec55aa6d-77ae-4a64-9e19-d90b589bd31c.jpg?v=1739788022",
+        stock: 20,
+        rating: 4.9
+      },
+      {
+        name: "Veg Maharaja Thali",
+        price: 399,
+        description: "A grand feast featuring Paneer Butter Masala, Dal Makhani, Mix Veg, Rice, Roti, and Gulab Jamun.",
+        category: "Combo & Offers",
+        imageUrl: "https://images.unsplash.com/photo-1626777552726-4a6b54c97e46?w=500",
+        stock: 25,
+        rating: 4.8
+      },
+      {
+        name: "Chinese Mini Meal",
+        price: 299,
+        description: "Veg Hakka Noodles or Fried Rice served with Veg Manchurian Gravy and a Coke.",
+        category: "Combo & Offers",
+        imageUrl: "https://images.unsplash.com/photo-1525755662778-989d0524087e?w=500",
+        stock: 30,
+        rating: 4.7
+      }
     ]);
 
-    console.log("✅ Products seeded!");
+    console.log("✅ Menu seeded!");
   } else {
-    console.log("📦 Products already exist, skipping seed.");
+    console.log("📦 Menu already exists, skipping seed.");
   }
 };
 
