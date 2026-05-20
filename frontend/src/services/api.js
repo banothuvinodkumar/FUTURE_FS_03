@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "http://localhost:5000/api",
+  // Use VITE_API_URL for production (set in Vercel), fallback to localhost for development
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
 });
 
 // ✅ FIXED TOKEN HANDLING
